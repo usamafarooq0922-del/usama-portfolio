@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Usama Farooq | SOC Analyst Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #070d18;
+    --bg2: #0c1525;
+    --bg3: #111e33;
+    --border: rgba(55,138,221,0.15);
+    --border2: rgba(55,138,221,0.3);
+    --teal: #1D9E75;
+    --teal-light: #5DCAA5;
+    --blue: #378ADD;
+    --blue-light: #85B7EB;
+    --amber: #EF9F27;
+    --coral: #F0997B;
+    --purple: #AFA9EC;
+    --text: #e8f4ff;
+    --text2: #7a9ab8;
+    --text3: #4a6a88;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(7,13,24,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--teal-light);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links { display: flex; gap: 2rem; }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text2);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal-light); }
+
+  /* LAYOUT */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section { padding: 5rem 0; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 56px;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(29,158,117,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29,158,117,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(29,158,117,0.06) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-scan {
+    position: absolute; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(29,158,117,0.5), transparent);
+    animation: scan 5s linear infinite;
+  }
+  @keyframes scan { 0%{top:0%} 100%{top:100%} }
+
+  .hero-content { position: relative; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(29,158,117,0.1);
+    border: 0.5px solid rgba(29,158,117,0.3);
+    color: var(--teal-light);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: blink 1.4s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 .name { color: var(--text); }
+  .hero h1 .role { color: var(--teal-light); }
+
+  .hero-sub {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 2rem;
+    max-width: 520px;
+    line-height: 1.8;
+  }
+
+  .hero-links { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 3rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #15825f; }
+
+  .btn-outline {
+    background: transparent;
+    border: 0.5px solid var(--border2);
+    color: var(--blue-light);
+  }
+  .btn-outline:hover { background: rgba(55,138,221,0.08); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    border-top: 0.5px solid var(--border);
+    padding-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {}
+  .stat-num {
+    font-size: 28px; font-weight: 700;
+    color: var(--teal-light);
+    font-family: var(--mono);
+  }
+  .stat-label { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+  /* SECTION HEADERS */
+  .sec-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 2.5rem;
+  }
+
+  .sec-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--teal);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .sec-line {
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+
+  .info-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .info-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0;
+    border-bottom: 0.5px solid rgba(55,138,221,0.08);
+    font-size: 13px;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-row .label { color: var(--text3); font-family: var(--mono); font-size: 11px; width: 80px; flex-shrink: 0; }
+  .info-row .val { color: var(--text); }
+  .info-row a { color: var(--blue-light); text-decoration: none; }
+  .info-row a:hover { text-decoration: underline; }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .exp-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 2px solid var(--teal);
+    position: relative;
+  }
+
+  .exp-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 0.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .exp-role { font-size: 16px; font-weight: 600; color: var(--text); }
+  .exp-org { font-size: 13px; color: var(--blue-light); margin-top: 3px; }
+
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    background: rgba(55,138,221,0.08);
+    border: 0.5px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .exp-bullets { list-style: none; margin-top: 1rem; }
+  .exp-bullets li {
+    font-size: 13px;
+    color: var(--text2);
+    padding: 4px 0 4px 1rem;
+    position: relative;
+    line-height: 1.7;
+  }
+  .exp-bullets li::before {
+    content: '›';
+    position: absolute; left: 0;
+    color: var(--teal);
+    font-size: 14px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border2); background: var(--bg3); }
+
+  .skill-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+  .skill-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .skill-tools { font-size: 11px; color: var(--text2); line-height: 1.6; font-family: var(--mono); }
+
+  .level-bar {
+    margin-top: 10px; height: 3px;
+    background: rgba(55,138,221,0.1);
+    border-radius: 2px; overflow: hidden;
+  }
+  .level-fill { height: 100%; border-radius: 2px; background: var(--teal); }
+
+  /* CERTIFICATIONS */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .cert-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(29,158,117,0.4); }
+
+  .cert-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    background: rgba(29,158,117,0.1);
+    border: 0.5px solid rgba(29,158,117,0.25);
+    color: var(--teal-light);
+  }
+
+  .cert-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .cert-org { font-size: 11px; color: var(--text3); margin-top: 3px; font-family: var(--mono); }
+
+  /* PROJECTS */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .proj-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .proj-card:hover { border-color: var(--border2); background: var(--bg3); }
+
+  .proj-card.featured {
+    border-color: rgba(29,158,117,0.35);
+    border-top: 2px solid var(--teal);
+    grid-column: 1 / -1;
+  }
+
+  .proj-tag-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .proj-type {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+  }
+
+  .pt-ai { background: rgba(175,169,236,0.12); border: 0.5px solid rgba(175,169,236,0.3); color: var(--purple); }
+  .pt-blue { background: rgba(55,138,221,0.1); border: 0.5px solid rgba(55,138,221,0.25); color: var(--blue-light); }
+  .pt-soc { background: rgba(29,158,117,0.1); border: 0.5px solid rgba(29,158,117,0.25); color: var(--teal-light); }
+
+  .proj-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
+  .proj-desc { font-size: 13px; color: var(--text2); line-height: 1.7; flex: 1; }
+
+  .proj-bullets { margin-top: 1rem; list-style: none; }
+  .proj-bullets li {
+    font-size: 12px; color: var(--text2);
+    padding: 3px 0 3px 1rem; position: relative; line-height: 1.6;
+  }
+  .proj-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--teal); }
+
+  .proj-tags {
+    display: flex; flex-wrap: wrap; gap: 5px;
+    margin-top: 1.25rem;
+  }
+
+  .tag {
+    font-family: var(--mono); font-size: 10px;
+    padding: 3px 8px; border-radius: 3px;
+    background: rgba(55,138,221,0.08);
+    border: 0.5px solid rgba(55,138,221,0.18);
+    color: #85B7EB;
+  }
+
+  /* EDUCATION */
+  .edu-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .edu-icon {
+    width: 52px; height: 52px; border-radius: 10px;
+    background: rgba(55,138,221,0.1);
+    border: 0.5px solid rgba(55,138,221,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0; color: var(--blue-light);
+  }
+
+  .edu-body {}
+  .edu-degree { font-size: 16px; font-weight: 600; color: var(--text); }
+  .edu-uni { font-size: 13px; color: var(--blue-light); margin-top: 4px; }
+  .edu-date { font-family: var(--mono); font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2.5rem 0;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+  }
+
+  footer a { color: var(--teal-light); text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+    .hero-stats { gap: 1.5rem; }
+    .proj-card.featured { grid-column: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">[ usama@soc ~ ]</div>
+  <div class="nav-links">
+    <a href="#about">about</a>
+    <a href="#experience">experience</a>
+    <a href="#skills">skills</a>
+    <a href="#certs">certs</a>
+    <a href="#projects">projects</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-scan"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        SOC Analyst · Threat Detection · Digital Forensics
+      </div>
+      <h1>
+        <span class="name">Usama Farooq</span><br>
+        <span class="role">Cybersecurity</span><br>
+        <span class="name">Portfolio</span>
+      </h1>
+      <p class="hero-sub">
+        BS Digital Forensics &amp; Cyber Security graduate with hands-on SOC experience
+        in Wazuh SIEM, threat analysis, incident response, and security tool development.
+        Based in Lahore, Pakistan.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:usamafarooq0922@gmail.com" class="btn btn-primary">✉ Contact Me</a>
+        <a href="https://linkedin.com/in/usama-farooq" target="_blank" class="btn btn-outline">in LinkedIn</a>
+        <a href="https://github.com" target="_blank" class="btn btn-outline">⌥ GitHub</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Security Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">L1</div>
+          <div class="stat-label">SOC Analyst Level</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-label">about</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="about-grid">
+      <p class="about-text">
+        Motivated cybersecurity graduate with real-world SOC experience at the Digital Forensics Research and Service Center and Punjab Information Technology Board. Skilled in SIEM monitoring with Wazuh, log analysis, IOC-based detection, and incident response workflows. Passionate about both defensive and offensive security — from alert triage to building custom security tools in Python.
+      </p>
+      <div class="info-card">
+        <div class="info-row"><span class="label">email</span><span class="val"><a href="mailto:usamafarooq0922@gmail.com">usamafarooq0922@gmail.com</a></span></div>
+        <div class="info-row"><span class="label">phone</span><span class="val">(+92) 325 829 4117</span></div>
+        <div class="info-row"><span class="label">location</span><span class="val">Lahore, Pakistan</span></div>
+        <div class="info-row"><span class="label">linkedin</span><span class="val"><a href="https://linkedin.com/in/usama-farooq" target="_blank">Usama Farooq</a></span></div>
+        <div class="info-row"><span class="label">status</span><span class="val" style="color:var(--teal-light)">● Open to SOC Roles</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-label">experience</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Security Operations Center — Level 1 Analyst</div>
+            <div class="exp-org">Digital Forensics Research &amp; Service Center, Lahore</div>
+          </div>
+          <div class="exp-date">Oct 2023 – Jul 2024</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Monitored and analysed Apache, IIS, Windows, and Linux logs using Wazuh SIEM — performing real-time alert triage and incident escalation.</li>
+          <li>Conducted event correlation and IOC-based detection, supporting incident response workflows and vulnerability validation.</li>
+          <li>Assisted in tuning Wazuh rules and creating custom detection signatures to reduce false positives.</li>
+          <li>Generated SOC reports and dashboards providing actionable insights for senior analysts.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Cyber Security Intern</div>
+            <div class="exp-org">Punjab Information Technology Board (PITB), Lahore</div>
+          </div>
+          <div class="exp-date">Jul 2024 – Oct 2024</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Assisted in monitoring network traffic and system logs using SIEM tools to detect and report potential threats in real-time.</li>
+          <li>Supported the implementation of basic security controls and vulnerability management practices across internal systems.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-label">skills</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-icon" style="color:var(--teal-light)">⬡</span>
+        <div class="skill-name">SIEM &amp; Detection Engineering</div>
+        <div class="skill-tools">Wazuh · Suricata · Snort · ELK Stack</div>
+        <div class="level-bar"><div class="level-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon" style="color:var(--blue-light)">◈</span>
+        <div class="skill-name">Network Security</div>
+        <div class="skill-tools">Wireshark · Nmap · Shodan · tcpdump</div>
+        <div class="level-bar"><div class="level-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon" style="color:var(--amber)">◎</span>
+        <div class="skill-name">Vulnerability Assessment</div>
+        <div class="skill-tools">OpenVAS · Nessus · Nexpose · Metasploit</div>
+        <div class="level-bar"><div class="level-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon" style="color:var(--coral)">◇</span>
+        <div class="skill-name">Malware Analysis &amp; RE</div>
+        <div class="skill-tools">Ghidra · Cutter · YARA · tcpdump</div>
+        <div class="level-bar"><div class="level-fill" style="width:65%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon" style="color:var(--purple)">⬟</span>
+        <div class="skill-name">Digital Forensics</div>
+        <div class="skill-tools">FTK · Autopsy · Incident Response</div>
+        <div class="level-bar"><div class="level-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon" style="color:var(--teal-light)">▣</span>
+        <div class="skill-name">Programming &amp; Scripting</div>
+        <div class="skill-tools">Python · Bash · C · C++ · SQL</div>
+        <div class="level-bar"><div class="level-fill" style="width:72%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon" style="color:var(--blue-light)">◉</span>
+        <div class="skill-name">Password &amp; Wireless</div>
+        <div class="skill-tools">John the Ripper · Hydra · Hashcat · Aircrack-ng</div>
+        <div class="level-bar"><div class="level-fill" style="width:68%"></div></div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon" style="color:var(--amber)">◐</span>
+        <div class="skill-name">Operating Systems</div>
+        <div class="skill-tools">Linux (Kali, Ubuntu) · Windows Server</div>
+        <div class="level-bar"><div class="level-fill" style="width:82%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-label">certifications</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">CompTIA Security+</div>
+          <div class="cert-org">Let's Defend</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">SOC Level 1</div>
+          <div class="cert-org">TryHackMe</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">Threat Intelligence Analyst</div>
+          <div class="cert-org">arcX</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">SOC Analyst Learning Path</div>
+          <div class="cert-org">Let's Defend</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">Blue Team Junior Analyst</div>
+          <div class="cert-org">Security Blue Team</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">Certified White Hat Hacker (CWHH)</div>
+          <div class="cert-org">Lahore Garrison University</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">CISA Training</div>
+          <div class="cert-org">Lahore Garrison University</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-label">projects</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="proj-grid">
+
+      <!-- FEATURED: AI NIDS -->
+      <div class="proj-card featured">
+        <div class="proj-tag-row">
+          <span class="proj-type pt-ai">AI · Machine Learning · NIDS</span>
+          <span style="font-family:var(--mono);font-size:10px;color:var(--teal-light)">★ Featured Project</span>
+        </div>
+        <div class="proj-title">AI Hybrid Network Intrusion Detection System (NIDS)</div>
+        <p class="proj-desc">A full AI-driven Hybrid NIDS integrating supervised machine learning (Random Forest, HGB, MLP) with unsupervised deep learning (Autoencoder) for anomaly detection. Trained and tested on real-world datasets — TII-SSRC-23 (27.5GB) and CIC-IDS-2018 — achieving strong generalization across environments. Includes a SOC-style web dashboard where users can upload CSV or PCAP traffic files, view predictions, visualize detected attacks, and provide feedback for model retraining.</p>
+        <ul class="proj-bullets">
+          <li>Hybrid detection logic: binary ensemble + Autoencoder for zero-day anomaly detection</li>
+          <li>Admin-controlled feedback-driven retraining workflow</li>
+          <li>Web dashboard built with Node.js, Express, MongoDB, Chart.js, and Bootstrap 5</li>
+          <li>ML pipeline in Python using TensorFlow/Keras, Scikit-learn, and CICFlowMeter</li>
+        </ul>
+        <div class="proj-tags">
+          <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">Scikit-learn</span>
+          <span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">MITRE ATT&amp;CK</span>
+          <span class="tag">CICFlowMeter</span><span class="tag">Anomaly Detection</span><span class="tag">Zero-Day</span>
+        </div>
+      </div>
+
+      <!-- SysGuardX -->
+      <div class="proj-card">
+        <div class="proj-tag-row">
+          <span class="proj-type pt-soc">Windows · Forensics · Python</span>
+        </div>
+        <div class="proj-title">SysGuardX — Windows Security &amp; Forensics Tool</div>
+        <p class="proj-desc">A Python/PyQt5 desktop application for real-time Windows security monitoring and forensic analysis, covering log analytics, USB forensics, file integrity, and RDP session tracking.</p>
+        <ul class="proj-bullets">
+          <li>Automated collection of Windows Security, PowerShell, and System logs via Windows Event API</li>
+          <li>USB tracking module for file transfers and unauthorized executable detection</li>
+          <li>SHA-256 hash-based File Integrity Monitoring (FIM) system</li>
+          <li>RDP and Network Share session monitoring with bar chart visualizations</li>
+        </ul>
+        <div class="proj-tags">
+          <span class="tag">Python</span><span class="tag">PyQt5</span><span class="tag">Windows API</span>
+          <span class="tag">FIM</span><span class="tag">USB Forensics</span><span class="tag">RDP</span>
+        </div>
+      </div>
+
+      <!-- Log Analyzer -->
+      <div class="proj-card">
+        <div class="proj-tag-row">
+          <span class="proj-type pt-blue">Log Analysis · Python</span>
+        </div>
+        <div class="proj-title">Web Server Log Analyzer</div>
+        <p class="proj-desc">A Python-based log analysis script using regex to parse Apache and IIS logs, detect attack patterns, and generate investigation reports.</p>
+        <ul class="proj-bullets">
+          <li>Identified brute-force attempts, unauthorized access, and suspicious HTTP methods</li>
+          <li>Extracted attacker IPs, timelines, and affected endpoints into structured reports</li>
+          <li>Parsed and separated both Apache and IIS log formats automatically</li>
+        </ul>
+        <div class="proj-tags">
+          <span class="tag">Python</span><span class="tag">Regex</span><span class="tag">Apache Logs</span>
+          <span class="tag">IIS Logs</span><span class="tag">Brute-force Detection</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-label">education</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-body">
+        <div class="edu-degree">BS Digital Forensics &amp; Cyber Security</div>
+        <div class="edu-uni">Lahore Garrison University, Lahore</div>
+        <div class="edu-date">Oct 2021 – Nov 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Usama Farooq · SOC Analyst · Lahore, Pakistan · <a href="mailto:usamafarooq0922@gmail.com">usamafarooq0922@gmail.com</a></p>
+    <p style="margin-top:8px">Built to be shared on <a href="https://linkedin.com" target="_blank">LinkedIn</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
